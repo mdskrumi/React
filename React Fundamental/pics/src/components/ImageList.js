@@ -7,7 +7,7 @@ const ImageList = (props) => {
     );
   });
 
-  return <div style={{ width: "100px", height: "100px" }}> {images} </div>;
+  return <div style={{ width: "150px", height: "150px" }}> {images} </div>;
 };
 
 export default ImageList;
