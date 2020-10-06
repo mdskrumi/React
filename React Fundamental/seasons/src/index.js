@@ -1,6 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
+import SeasonDisplay from "./components/SeasonDisplay";
+import Spinner from "./components/Spinner";
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -10,6 +13,15 @@ class App extends React.Component {
       lat: null,
       lon: null,
     };
+  }
+  // THIS IS SAME AS INITIALIZING IN THE CONSTRUCTOR.
+  //   state = {
+  //     lat: null,
+  //     lon: null,
+  //   };
+
+  // THIS GETS INVOCKED ONE TIME, SO LOADING DATA HERE IS A GOOD PLACE AND RECOMMANDED..
+  componentDidMount() {
     window.navigator.geolocation.getCurrentPosition(
       (position) => {
         this.setState({
@@ -27,22 +39,20 @@ class App extends React.Component {
     );
   }
 
-  render() {
+  renderContent() {
     if (this.state.errorMsg && !this.state.lat && !this.state.lon) {
       return <p>Error: {this.state.errorMsg}</p>;
     } else if (!this.state.errorMsg && this.state.lat && this.state.lon) {
       return (
         <div>
-          <p> Latitude: {this.state.lat} </p>
-          <p> Longitude: {this.state.lon} </p>
+          <SeasonDisplay lat={this.state.lat} lon={this.state.lon} />
         </div>
       );
-    } else
-      return (
-        <div>
-          <h1> Hasbunallahu </h1>
-        </div>
-      );
+    } else return <Spinner text="Please Allow Location Permission" />;
+  }
+
+  render() {
+    return <div>{this.renderContent()}</div>;
   }
 }
 
