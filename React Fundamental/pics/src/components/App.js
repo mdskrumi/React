@@ -1,22 +1,16 @@
-import React from "react";
-
-import unsplash from "../api/unsplash";
+import React, { useState } from "react";
 
 import SearchBar from "./SearchBar";
 import ImageList from "./ImageList";
 
 // Convert this class to functional component.
 // Use hooks to manage it's local state.
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      images: [],
-      error_msg: null,
-    };
-  }
+const App = () => {
+  const [images, setImages] = useState([]);
+  const [error_msg, setErrorMsg] = useState("");
+
   // Handle Error - DONE
-  onSearchSubmit = (term) => {
+  const onSearchSubmit = (term) => {
     // const response = await unsplash.get("/search/photos", {
     //   params: {
     //     query: term,
@@ -37,21 +31,16 @@ class App extends React.Component {
         } else throw "Something went wrong";
       })
       .then((response) => {
-        this.setState({
-          images: response.results,
-        });
+        setImages(response.results);
       })
       .catch((err) => {
-        this.setState({
-          error_msg: err,
-        });
-        console.log(err);
+        setErrorMsg(err);
       });
   };
 
-  renderContent() {
-    if (!this.state.error_msg) {
-      return <ImageList images={this.state.images} />;
+  const renderContent = () => {
+    if (!error_msg) {
+      return <ImageList images={images} />;
     } else {
       return (
         <h2
@@ -62,21 +51,19 @@ class App extends React.Component {
             color: "red",
           }}
         >
-          {this.state.error_msg}
+          {error_msg}
         </h2>
       );
     }
-  }
+  };
 
-  render() {
-    return (
-      <div className="ui container" style={{ marginTop: "10px" }}>
-        <SearchBar onSearchSubmit={this.onSearchSubmit} />
-        <h4>Found: {this.state.images.length} Images</h4>
-        {this.renderContent()}
-      </div>
-    );
-  }
-}
+  return (
+    <div className="ui container" style={{ marginTop: "10px" }}>
+      <SearchBar onSearchSubmit={onSearchSubmit} />
+      <h4>Found: {images.length} Images</h4>
+      {renderContent()}
+    </div>
+  );
+};
 
 export default App;
