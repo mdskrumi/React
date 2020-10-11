@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import Accordion from "./Accordion";
 import Search from "./Search";
 import Dropdown from "./Dropdown";
+import Route from "./route";
+import Header from "./Header";
 
 const items = [
   {
@@ -44,14 +46,22 @@ const options = [
 
 const App = () => {
   const [selected, setSelected] = useState(options[0]);
-
   return (
     <div className="ui container" style={{ margin: "10px" }}>
-      <Dropdown
-        options={options}
-        selected={selected}
-        onSetSelected={setSelected}
-      />
+      <Header />
+      <Route route="/">
+        <Accordion items={items} />
+      </Route>
+      <Route route="/l">
+        <Search />
+      </Route>
+      <Route route="/d">
+        <Dropdown
+          options={options}
+          selected={selected}
+          onSetSelected={setSelected}
+        />
+      </Route>
     </div>
   );
 };
