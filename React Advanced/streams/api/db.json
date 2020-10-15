@@ -1,0 +1,20 @@
+{
+  "streams": [
+    {
+      "title": "asd",
+      "description": "asd",
+      "id": 1
+    },
+    {
+      "title": "qwe",
+      "description": "qwe",
+      "id": 2
+    },
+    {
+      "title": "Azan is the call from Allah",
+      "description": "It stream broadcasts azan",
+      "userId": "111993624913166218421",
+      "id": 3
+    }
+  ]
+}
