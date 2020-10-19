@@ -1,0 +1,12 @@
+{
+  "app.components.NavBar.header": "",
+  "app.components.OfferBanner.header": "",
+  "app.containers.BabyPage.header": "",
+  "app.containers.HomePage.header": "This is the HomePage container! In bangla",
+  "app.containers.ManPage.header": "",
+  "app.containers.NotFoundPage.header": "পেজটি পাওয়া যায় নি",
+  "app.containers.WomanPage.header": "",
+  "boilerplate.containers.LocaleToggle.bn": "বাংলা",
+  "boilerplate.containers.LocaleToggle.de": "de",
+  "boilerplate.containers.LocaleToggle.en": "ইংলিশ"
+}

@@ -1,0 +1,12 @@
+{
+  "app.components.NavBar.header": "This is the NavBar component!",
+  "app.components.OfferBanner.header": "This is the OfferBanner component!",
+  "app.containers.BabyPage.header": "This is the BabyPage container!",
+  "app.containers.HomePage.header": "This is the HomePage container!",
+  "app.containers.ManPage.header": "This is the ManPage container!",
+  "app.containers.NotFoundPage.header": "This is the NotFoundPage container!",
+  "app.containers.WomanPage.header": "This is the WomanPage container!",
+  "boilerplate.containers.LocaleToggle.bn": "Bangla",
+  "boilerplate.containers.LocaleToggle.de": "de",
+  "boilerplate.containers.LocaleToggle.en": "English"
+}
