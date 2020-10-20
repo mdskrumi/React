@@ -1,13 +1,18 @@
 import { take, call, put, select } from 'redux-saga/effects';
 
-import { loadProductsSuccess } from './actions'
+import { loadProductsSuccess, loadProductsFailed } from './actions'
 import shopApi from '../../api/shopApi';
 
 
 
 export function* loadProducts() {
-  const products = yield shopApi.get('/products');
-  yield put(loadProductsSuccess(products.data));
+  try {
+    const products = yield shopApi.get('/products');
+    yield put(loadProductsSuccess(products.data));
+  } catch (error) {
+    yield put(loadProductsFailed(error));
+  }
+
 }
 
 // Individual exports for testing

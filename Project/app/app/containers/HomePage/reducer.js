@@ -8,8 +8,8 @@ import { LOAD_PRODUCTS, LOAD_PRODUCTS_SUCCESS, LOAD_PRODUCTS_ERROR } from './con
 
 export const initialState = {
   products: [],
-  loading: false,
-  error: true,
+  loading: true,
+  error: false,
 };
 
 /* eslint-disable default-case, no-param-reassign */

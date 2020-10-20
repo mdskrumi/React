@@ -1,4 +1,5 @@
 {
+  "app.components.Loading.header": "Loading",
   "app.components.NavBar.header": "This is the NavBar component!",
   "app.components.OfferBanner.header": "This is the OfferBanner component!",
   "app.containers.BabyPage.header": "This is the BabyPage container!",

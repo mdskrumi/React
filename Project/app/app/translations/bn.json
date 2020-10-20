@@ -1,4 +1,5 @@
 {
+  "app.components.Loading.header": "ডাটা লোড হচ্ছে",
   "app.components.NavBar.header": "",
   "app.components.OfferBanner.header": "",
   "app.containers.BabyPage.header": "",

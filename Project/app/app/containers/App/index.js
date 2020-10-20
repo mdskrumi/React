@@ -10,6 +10,9 @@
 import React from 'react';
 import { Switch, Route, Router } from 'react-router-dom';
 
+
+import CartContext from 'context/CartContext';
+
 import HomePage from 'containers/HomePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import ManPage from 'containers/ManPage/Loadable';
@@ -42,20 +45,32 @@ const items = [
   }
 ]
 
+const cart = {
+  products: [],
+  addProduct: (val) => {
+    cart.products.push(val);
+  },
+  removeProduct: (val) => {
+    cart.products = cart.products.filter(p => p !== val);
+  },
+}
+
 export default function App() {
   return (
-    <div className='ui container'>
-      <Router history={history}>
-        <NavBar items={items} isMainNavBar={true} />
-        <Switch>
-          <Route exact path="/" component={HomePage} />
-          <Route exact path="/man" component={ManPage} />
-          <Route exact path="/woman" component={WomanPage} />
-          <Route exact path="/baby" component={BabyPage} />
-          <Route component={NotFoundPage} />
-        </Switch>
-      </Router>
-      <GlobalStyle />
-    </div>
+    <CartContext.Provider value={cart} >
+      <div className='ui container'>
+        <Router history={history}>
+          <NavBar items={items} isMainNavBar={true} />
+          <Switch>
+            <Route exact path="/" component={HomePage} />
+            <Route exact path="/man" component={ManPage} />
+            <Route exact path="/woman" component={WomanPage} />
+            <Route exact path="/baby" component={BabyPage} />
+            <Route component={NotFoundPage} />
+          </Switch>
+        </Router>
+        <GlobalStyle />
+      </div>
+    </CartContext.Provider>
   );
 }
