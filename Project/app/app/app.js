@@ -18,6 +18,7 @@ import 'sanitize.css/sanitize.css';
 
 // Import root app
 import App from 'containers/App';
+import MainPage from 'containers/MainPage';
 
 // Import Language Provider
 import LanguageProvider from 'containers/LanguageProvider';
@@ -33,17 +34,22 @@ import configureStore from './configureStore';
 // Import i18n messages
 import { translationMessages } from './i18n';
 
+
+
+
+
 // Create redux store with history
 const initialState = {};
 const store = configureStore(initialState, history);
 const MOUNT_NODE = document.getElementById('app');
+
 
 const render = messages => {
   ReactDOM.render(
     <Provider store={store}>
       <LanguageProvider messages={messages}>
         <ConnectedRouter history={history}>
-          <App />
+          <MainPage />
         </ConnectedRouter>
       </LanguageProvider>
     </Provider>,

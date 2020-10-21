@@ -7,7 +7,6 @@
 import React, { useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
@@ -17,32 +16,24 @@ import { makeSelectHomePage } from './selectors';
 import { loadProducts } from './actions';
 import reducer from './reducer';
 import saga from './saga';
-import messages from './messages';
 
 
 import Product from '../../components/Product';
 import OfferBanner from '../../components/OfferBanner';
 import Loading from '../../components/Loading';
 
-import CartContext from '../../context/CartContext';
 
 export function HomePage(props) {
   useInjectReducer({ key: 'homePage', reducer });
   useInjectSaga({ key: 'homePage', saga });
 
-
-  const cart = useContext(CartContext);
-
-  useEffect(() => {
-    loadProducts();
-  }, [])
   console.log(props);
 
+  useEffect(() => {
+    props.loadProducts();
+  }, []);
 
-  const addToCart = (product) => {
-    cart.addProduct(product);
-    console.log(cart);
-  }
+
 
   const renderContent = () => {
     if (props.homePage.error) {
@@ -55,23 +46,20 @@ export function HomePage(props) {
       <Product
         key={p.id}
         product={p}
-        addToCart={addToCart}
       />
     );
   }
 
 
-
-  // const read = () => {
-  //   <CartContext.Consumer >
-  //     {(value) => {
-  //       return <button>{value.cartItem}</button>
-  //     }}
-  //   </CartContext.Consumer>
-  // }
-
   return (
     <div>
+      {/* <div class="ui segment">
+        <div class="ui right rail">
+          <div class="ui segment">
+            {renderContent()}
+          </div>
+        </div>
+      </div> */}
       <OfferBanner />
       {renderContent()}
     </div>
@@ -90,7 +78,7 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    loadProducts: () => dispatch(loadProducts),
+    loadProducts: () => dispatch(loadProducts()),
   };
 }
 

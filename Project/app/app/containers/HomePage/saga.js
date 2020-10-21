@@ -1,6 +1,7 @@
-import { take, call, put, select } from 'redux-saga/effects';
+import { take, call, put, select, takeLatest } from 'redux-saga/effects';
 
 import { loadProductsSuccess, loadProductsFailed } from './actions'
+import { LOAD_PRODUCTS, LOAD_PRODUCTS_SUCCESS, LOAD_PRODUCTS_ERROR } from './constants';
 import shopApi from '../../api/shopApi';
 
 
@@ -18,5 +19,5 @@ export function* loadProducts() {
 // Individual exports for testing
 export default function* homePageSaga() {
   // See example in containers/HomePage/saga.js
-  yield loadProducts();
+  yield takeLatest(LOAD_PRODUCTS, loadProducts);
 }

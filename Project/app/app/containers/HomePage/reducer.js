@@ -15,7 +15,6 @@ export const initialState = {
 /* eslint-disable default-case, no-param-reassign */
 const homePageReducer = (state = initialState, action) =>
   produce(state, (/* draft */) => {
-    // console.log("Reducer", state);
     // console.log("Actions", action);
     switch (action.type) {
       case LOAD_PRODUCTS:

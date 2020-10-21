@@ -10,14 +10,12 @@
 import React from 'react';
 import { Switch, Route, Router } from 'react-router-dom';
 
-
-import CartContext from 'context/CartContext';
-
 import HomePage from 'containers/HomePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import ManPage from 'containers/ManPage/Loadable';
 import WomanPage from 'containers/WomanPage/Loadable';
 import BabyPage from 'containers/BabyPage/Loadable';
+import CartPage from 'containers/CartPage';
 
 
 import history from '../../utils/history';
@@ -45,32 +43,30 @@ const items = [
   }
 ]
 
-const cart = {
-  products: [],
-  addProduct: (val) => {
-    cart.products.push(val);
-  },
-  removeProduct: (val) => {
-    cart.products = cart.products.filter(p => p !== val);
-  },
-}
 
-export default function App() {
+
+export default function App(props) {
+  console.log("APP MAIN: ", props);
   return (
-    <CartContext.Provider value={cart} >
-      <div className='ui container'>
-        <Router history={history}>
-          <NavBar items={items} isMainNavBar={true} />
-          <Switch>
-            <Route exact path="/" component={HomePage} />
-            <Route exact path="/man" component={ManPage} />
-            <Route exact path="/woman" component={WomanPage} />
-            <Route exact path="/baby" component={BabyPage} />
-            <Route component={NotFoundPage} />
-          </Switch>
-        </Router>
-        <GlobalStyle />
-      </div>
-    </CartContext.Provider>
+    <div className='ui container'>
+      <Router history={history}>
+        <NavBar items={items} isMainNavBar={true} />
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+          <Route exact path="/man" component={ManPage} />
+          <Route exact path="/shirt" component={ManPage} />
+          <Route exact path="/jeans" component={ManPage} />
+          <Route exact path="/woman" component={WomanPage} />
+          <Route exact path="/woman-shirt" component={WomanPage} />
+          <Route exact path="/woman-jeans" component={WomanPage} />
+          <Route exact path="/baby" component={BabyPage} />
+          <Route exact path="/baby-shirt" component={BabyPage} />
+          <Route exact path="/baby-jeans" component={BabyPage} />
+          <Route exact path="/cart" component={CartPage} />
+          <Route component={NotFoundPage} />
+        </Switch>
+      </Router>
+      <GlobalStyle />
+    </div>
   );
 }

@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 
-const selectRouter = state => state.router;
+const selectRouter = state => state;
 
 const makeSelectLocation = () =>
   createSelector(

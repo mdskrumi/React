@@ -4,16 +4,39 @@
  *
  */
 import produce from 'immer';
-import { DEFAULT_ACTION } from './constants';
+import {
+  LOAD_WOMAN_SHIRT_PRODUCTS,
+  LOAD_WOMAN_SHIRT_PRODUCTS_SUCCESS,
+  LOAD_WOMAN_SHIRT_PRODUCTS_ERROR,
+  LOAD_WOMAN_JEANS_PRODUCTS,
+  LOAD_WOMAN_JEANS_PRODUCTS_SUCCESS,
+  LOAD_WOMAN_JEANS_PRODUCTS_ERROR,
+} from './constants';
 
-export const initialState = {};
+export const initialState = {
+  products: [],
+  loading: true,
+  error: false,
+};
 
 /* eslint-disable default-case, no-param-reassign */
 const womanPageReducer = (state = initialState, action) =>
   produce(state, (/* draft */) => {
     switch (action.type) {
-      case DEFAULT_ACTION:
-        break;
+      case LOAD_WOMAN_SHIRT_PRODUCTS:
+        return { loading: true, error: false, products: [] };
+      case LOAD_WOMAN_SHIRT_PRODUCTS_SUCCESS:
+        return { loading: false, error: false, products: action.payload }
+      case LOAD_WOMAN_SHIRT_PRODUCTS_ERROR:
+        return { loading: false, error: action.payload }
+      case LOAD_WOMAN_JEANS_PRODUCTS:
+        return { loading: true, error: false, products: [] };
+      case LOAD_WOMAN_JEANS_PRODUCTS_SUCCESS:
+        return { loading: false, error: false, products: action.payload }
+      case LOAD_WOMAN_JEANS_PRODUCTS_ERROR:
+        return { loading: false, error: action.payload }
+      default:
+        return state;
     }
   });
 

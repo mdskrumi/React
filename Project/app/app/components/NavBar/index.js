@@ -4,24 +4,19 @@
  *
  */
 
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 // import PropTypes from 'prop-types';
 // import styled from 'styled-components';
 
 import { Link } from 'react-router-dom';
 import LocaleToggle from '../../containers/LocaleToggle';
-import CartContext from '../../context/CartContext';
 
 function NavBar(props) {
 
   const path = window.location.pathname;
-
-  const cart = useContext(CartContext);
-
-
   const renderContent = () => {
     return props.items.map((item) => {
-      return <Link to={item.link} className={`item ${(path === item.link) ? 'active_' : ""}`} key={item.name}>{item.name}</Link>
+      return <Link to={item.link} className={`item ${(path === item.link) ? 'active' : ""}`} key={item.name}>{item.name}</Link>
     })
   }
 
@@ -33,8 +28,8 @@ function NavBar(props) {
             Language
           <LocaleToggle />
           </section>
-          <Link to='/cart' className='item' > <i className="shopping cart icon" > </i> {cart.products.length} </Link>
-          <Link to='/logout' className={`item ${(path === '/logout') ? 'active_' : ""}`}>Logout</Link>
+          <Link to='/cart' className='item' > <i className="shopping cart icon" > </i>  </Link>
+          <Link to='/logout' className={`item ${(path === '/logout') ? 'active_' : ""}`}>Sign In</Link>
         </div>
       )
     }
