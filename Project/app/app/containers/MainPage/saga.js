@@ -1,6 +1,14 @@
-// import { take, call, put, select } from 'redux-saga/effects';
+import { takeEvery, take, call, put, select } from 'redux-saga/effects';
+import { addToCart, removeFromCart } from './actions';
+import { ADD_TO_CART } from './constants';
+
+
+
+export function* add(product) {
+  yield put(addToCart(product));
+}
 
 // Individual exports for testing
 export default function* mainPageSaga() {
-  // See example in containers/HomePage/saga.js
+  yield take(ADD_TO_CART, add);
 }

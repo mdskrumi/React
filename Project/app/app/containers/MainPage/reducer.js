@@ -4,16 +4,23 @@
  *
  */
 import produce from 'immer';
-import { DEFAULT_ACTION } from './constants';
+import { ADD_TO_CART, REMOVE_FROM_CART } from './constants';
 
-export const initialState = {};
+export const initialState = {
+  productsInCart: []
+}
+
 
 /* eslint-disable default-case, no-param-reassign */
 const mainPageReducer = (state = initialState, action) =>
   produce(state, (/* draft */) => {
     switch (action.type) {
-      case DEFAULT_ACTION:
-        break;
+      case ADD_TO_CART:
+        return { productsInCart: [...state.productsInCart, action.payload] }
+      case REMOVE_FROM_CART:
+        return state.filter(s => s !== action.payload);
+      default:
+        return state;
     }
   });
 
